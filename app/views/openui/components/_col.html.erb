@@ -1,0 +1,8 @@
+<%# locals: (openui:, element:, label:, data: [], align: "left", sort: nil) %>
+<%# A Col outside a Table renders as a definition list so nothing is lost. %>
+<dl class="openui-col">
+  <dt class="openui-col__label"><%= openui.text(label) %></dt>
+  <% Array(data).each do |cell| %>
+    <dd class="openui-col__cell openui-table__cell--<%= align == "right" ? "right" : "left" %>"><%= openui.node(cell) %></dd>
+  <% end %>
+</dl>

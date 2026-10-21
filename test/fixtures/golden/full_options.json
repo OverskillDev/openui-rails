@@ -1,0 +1,14 @@
+{
+  "toolCalls": true,
+  "bindings": true,
+  "editMode": true,
+  "inlineMode": true,
+  "preamble": "You build dashboards for Acme in openui-lang.",
+  "additionalRules": ["Prefer Table for comparisons.", "Never invent prices."],
+  "examples": ["root = Stack([t])\nt = Text(\"Hi\")"],
+  "toolExamples": ["tickets = Query(\"listTickets\", {}, {rows: []})"],
+  "tools": [
+    "listTickets",
+    {"name": "createTicket", "description": "Create a ticket", "inputSchema": {"type": "object", "properties": {"title": {"type": "string"}, "priority": {"type": "string", "enum": ["low", "high"]}}, "required": ["title"]}, "outputSchema": {"type": "object", "properties": {"id": {"type": "number"}, "ok": {"type": "boolean"}}}}
+  ]
+}

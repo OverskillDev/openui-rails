@@ -1,0 +1,6 @@
+<%# locals: (openui:, element:, name:, label:, checked: nil) %>
+<label class="openui-checkbox flex items-center gap-2 text-sm text-gray-900 dark:text-gray-100">
+  <input type="checkbox" name="<%= openui.text(name) %>"<% if checked == true %> checked<% end %>
+    class="size-4 rounded border-gray-300 accent-blue-600 dark:border-gray-700 dark:accent-blue-500">
+  <%= openui.text(label) %>
+</label>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"<% if @theme %> class="<%= "dark" if @theme == "dark" %>" data-theme="<%= @theme %>" data-theme-fixed<% end %>>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>openui-rails component catalog</title>
+    <%= javascript_tag nonce: true do %>
+      (function () {
+        var root = document.documentElement;
+        if (root.hasAttribute("data-theme-fixed")) return;
+        var stored = null;
+        try { stored = localStorage.getItem("openui-catalog-theme"); } catch (e) {}
+        var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        root.classList.toggle("dark", theme === "dark");
+        root.setAttribute("data-theme", theme);
+      })();
+    <% end %>
+    <%# Tailwind Play CDN for the catalog only: no build step. Host apps compile their own Tailwind. %>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" nonce="<%= content_security_policy_nonce %>"></script>
+    <style type="text/tailwindcss" nonce="<%= content_security_policy_nonce %>">
+      @custom-variant dark (&:where(.dark, .dark *));
+    </style>
+    <%= openui_stylesheet_tag %>
+  </head>
+  <body class="bg-gray-50 text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
+    <%= yield %>
+    <%= javascript_tag nonce: true do %>
+      document.addEventListener("click", function (event) {
+        var toggle = event.target.closest("[data-theme-toggle]");
+        if (toggle) {
+          var root = document.documentElement;
+          var theme = root.classList.contains("dark") ? "light" : "dark";
+          root.classList.toggle("dark", theme === "dark");
+          root.setAttribute("data-theme", theme);
+          try { localStorage.setItem("openui-catalog-theme", theme); } catch (e) {}
+          return;
+        }
+        var copy = event.target.closest("[data-copy]");
+        if (copy && navigator.clipboard) {
+          var source = document.getElementById(copy.getAttribute("data-copy"));
+          navigator.clipboard.writeText(source.textContent).then(function () {
+            var label = copy.querySelector("[data-copy-label]");
+            label.textContent = "Copied";
+            setTimeout(function () { label.textContent = "Copy"; }, 1500);
+          });
+        }
+      });
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<%# locals: (openui:, element:, label:, action: nil, variant: "primary") %>
+<%
+  variants = {
+    "primary" => "bg-blue-600 text-white shadow-sm hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400",
+    "secondary" => "bg-white text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-700",
+    "ghost" => "text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-400/10"
+  }
+  steps = action.is_a?(OpenUI::Lang::ActionPlan) ? action.steps : []
+  plan = steps.map { |s| {"type" => s.type.to_s}.merge(s.data.slice(:message, :context, :url, :name, :params).transform_keys(&:to_s)) }
+  first = steps.first&.type
+  title = steps.find { |s| s.type == :open_url }&.data&.dig(:url)
+%>
+<%# Inert: openui-rails runs no actions. The plan is in data-openui-action for the host to wire. %>
+<button type="button" class="openui-button inline-flex w-fit items-center gap-1.5 rounded-md px-3 py-2 text-sm font-semibold <%= variants.fetch(variant, variants["primary"]) %>"
+  data-openui-action="<%= plan.to_json %>"<% if title %> title="<%= title %>"<% end %>>
+  <% if first == :continue_conversation %><%= openui_icon("message-square", size: 14) %><% end %>
+  <%= openui.text(label) %>
+  <% if first == :open_url %><%= openui_icon("external-link", size: 14) %><% end %>
+</button>

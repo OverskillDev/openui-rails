@@ -1,0 +1,12 @@
+<%# locals: (openui:, element:, title:, children: [], subtitle: nil) %>
+<section class="openui-card">
+  <header class="openui-card__header">
+    <h3 class="openui-card__title"><%= openui.text(title) %></h3>
+    <% if subtitle.present? %>
+      <p class="openui-card__subtitle"><%= openui.text(subtitle) %></p>
+    <% end %>
+  </header>
+  <% if children.present? %>
+    <div class="openui-card__body"><%= openui.node(children) %></div>
+  <% end %>
+</section>

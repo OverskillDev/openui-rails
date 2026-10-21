@@ -1,0 +1,6 @@
+<%# locals: (openui:, element:, text:, variant: "info", title: nil) %>
+<% variant = "info" unless %w[info tip warning danger].include?(variant) %>
+<aside class="openui-callout openui-callout--<%= variant %>" role="note">
+  <% if title.present? %><p class="openui-callout__title"><%= openui.text(title) %></p><% end %>
+  <p class="openui-callout__text"><%= openui.text(text) %></p>
+</aside>

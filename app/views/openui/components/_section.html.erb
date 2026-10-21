@@ -1,0 +1,10 @@
+<%# locals: (openui:, element:, title:, children: [], description: nil) %>
+<section class="openui-section flex flex-col gap-4">
+  <header class="border-b border-gray-200 pb-3 dark:border-gray-800">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100"><%= openui.text(title) %></h2>
+    <% if description.present? %>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400"><%= openui.text(description) %></p>
+    <% end %>
+  </header>
+  <div class="flex flex-col gap-4"><%= openui.node(children) %></div>
+</section>

@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+# The components the model may use. Starts from the starter library that ships
+# with openui-rails (Stack, Card, Text, Table, Col, KeyValue, Callout, Chart)
+# and extends it. Every component maps to a partial under
+# app/views/openui/components/ (run `bin/rails g openui:install --partials`
+# to copy the starter partials here and restyle them).
+module OpenuiLibrary
+  def self.instance
+    @instance ||= OpenUI::Rails::StarterLibrary.build.extend(id: "<%= Rails.application.class.module_parent_name.underscore %>", version: "1.0.0") do
+      # Example: a metric tile that may appear inside Stack and Card.
+      #
+      # component "Metric", description: "One number with a label, for KPIs.",
+      #   renders: "openui/components/metric", slots: ["Stack.children", "Card.children"] do
+      #   arg :label, string
+      #   arg :value, number
+      #   arg :unit, string, optional: true
+      # end
+    end
+  end
+
+  # Prompt options passed to chat.with_openui(library, **OpenuiLibrary.prompt_options).
+  def self.prompt_options
+    OpenUI::Rails::StarterLibrary.prompt_options
+  end
+end

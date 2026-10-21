@@ -1,0 +1,4 @@
+<%# locals: (openui:, element:, children: [], direction: "column") %>
+<div class="openui-stack openui-stack--<%= direction == "row" ? "row" : "column" %>">
+  <%= openui.node(children) %>
+</div>

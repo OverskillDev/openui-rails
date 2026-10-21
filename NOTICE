@@ -1,0 +1,23 @@
+openui-rails
+Copyright (c) 2026 Todd Dickerson. MIT License (see LICENSE).
+
+This gem implements OpenUI Lang, the generative UI language specified by
+Thesys Inc. in https://github.com/thesysdev/openui (MIT License,
+Copyright (c) 2011-2024 Thesys Inc.). The following parts are ports or copies
+of that work and keep its license:
+
+- lib/openui/lang/lexer.rb, expressions.rb, statements.rb, parser.rb,
+  stream_parser.rb, materialize.rb, validation.rb, builtins.rb, message.rb,
+  merge.rb, form_validation.rb: ports of packages/lang-core/src (parser,
+  runtime, message, merge, validation) to Ruby.
+- lib/openui/library/prompt.rb: a port of packages/lang-core/src/parser/prompt.ts,
+  including its prompt text.
+- test/fixtures/openui/1.0: a copy of spec/fixtures/1.0 (conformance cases).
+- test/fixtures/golden/chat_library.spec.json: a copy of
+  docs/generated/chat-library.spec.json.
+
+The inline SVG icons in lib/openui/rails/helper.rb (ICONS) are from Lucide
+(https://lucide.dev), ISC License, Copyright (c) Lucide Contributors.
+
+OpenUI and openui.com are trademarks of their owner. This project is not
+affiliated with or endorsed by Thesys.

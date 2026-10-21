@@ -1,0 +1,12 @@
+<%# locals: (openui:, element:, name:, label: nil, placeholder: nil, type: "text", value: nil) %>
+<% type = "text" unless %w[text email number date textarea].include?(type) %>
+<% field_id = "openui-#{element.statement_id || name}-#{name}".parameterize %>
+<% field_class = "block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder:text-gray-500" %>
+<div class="openui-input flex flex-col gap-1.5">
+  <% if label.present? %><label for="<%= field_id %>" class="text-sm font-medium text-gray-900 dark:text-gray-100"><%= openui.text(label) %></label><% end %>
+  <% if type == "textarea" %>
+    <textarea id="<%= field_id %>" name="<%= openui.text(name) %>" rows="3" placeholder="<%= openui.text(placeholder) %>" class="<%= field_class %>"><%= openui.text(value) %></textarea>
+  <% else %>
+    <input id="<%= field_id %>" type="<%= type %>" name="<%= openui.text(name) %>" value="<%= openui.text(value) %>" placeholder="<%= openui.text(placeholder) %>" class="<%= field_class %>">
+  <% end %>
+</div>

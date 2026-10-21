@@ -1,0 +1,141 @@
+/* openui-rails starter components. Light and dark through CSS variables;
+   a host can override the variables or the classes. */
+.openui-root {
+  --openui-fg: #1f2328;
+  --openui-fg-muted: #59636e;
+  --openui-bg: #ffffff;
+  --openui-surface: #f6f8fa;
+  --openui-border: #d1d9e0;
+  --openui-accent: #0969da;
+  --openui-info: #0969da;
+  --openui-tip: #1a7f37;
+  --openui-warning: #9a6700;
+  --openui-danger: #cf222e;
+  --openui-s1: #0969da;
+  --openui-s2: #8250df;
+  --openui-s3: #1a7f37;
+  --openui-s4: #bf8700;
+  --openui-s5: #cf222e;
+  --openui-s6: #0598bc;
+  --openui-s7: #e85aad;
+  --openui-s8: #57606a;
+  --openui-radius: 10px;
+  --openui-space: 12px;
+  color: var(--openui-fg);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  .openui-root {
+    --openui-fg: #e6edf3;
+    --openui-fg-muted: #9198a1;
+    --openui-bg: #0d1117;
+    --openui-surface: #161b22;
+    --openui-border: #30363d;
+    --openui-accent: #4493f8;
+    --openui-info: #4493f8;
+    --openui-tip: #3fb950;
+    --openui-warning: #d29922;
+    --openui-danger: #f85149;
+    --openui-s1: #4493f8;
+    --openui-s2: #a371f7;
+    --openui-s3: #3fb950;
+    --openui-s4: #d29922;
+    --openui-s5: #f85149;
+    --openui-s6: #39c5cf;
+    --openui-s7: #f778ba;
+    --openui-s8: #8b949e;
+  }
+}
+[data-theme="dark"] .openui-root {
+  --openui-fg: #e6edf3; --openui-fg-muted: #9198a1; --openui-bg: #0d1117; --openui-surface: #161b22;
+  --openui-border: #30363d; --openui-accent: #4493f8; --openui-info: #4493f8; --openui-tip: #3fb950;
+  --openui-warning: #d29922; --openui-danger: #f85149;
+  --openui-s1: #4493f8; --openui-s2: #a371f7; --openui-s3: #3fb950; --openui-s4: #d29922;
+  --openui-s5: #f85149; --openui-s6: #39c5cf; --openui-s7: #f778ba; --openui-s8: #8b949e;
+}
+[data-theme="light"] .openui-root {
+  --openui-fg: #1f2328; --openui-fg-muted: #59636e; --openui-bg: #ffffff; --openui-surface: #f6f8fa;
+  --openui-border: #d1d9e0; --openui-accent: #0969da; --openui-info: #0969da; --openui-tip: #1a7f37;
+  --openui-warning: #9a6700; --openui-danger: #cf222e;
+  --openui-s1: #0969da; --openui-s2: #8250df; --openui-s3: #1a7f37; --openui-s4: #bf8700;
+  --openui-s5: #cf222e; --openui-s6: #0598bc; --openui-s7: #e85aad; --openui-s8: #57606a;
+}
+
+.openui-node { display: contents; }
+.openui-pending {
+  display: block;
+  min-height: 2.5em;
+  border-radius: var(--openui-radius);
+  background: linear-gradient(90deg, var(--openui-surface) 25%, var(--openui-border) 50%, var(--openui-surface) 75%);
+  background-size: 200% 100%;
+  animation: openui-shimmer 1.2s linear infinite;
+}
+@keyframes openui-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .openui-pending { animation: none; } }
+
+.openui-stack { display: flex; gap: var(--openui-space); }
+.openui-stack--column { flex-direction: column; }
+.openui-stack--row { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+.openui-stack--row > .openui-node > * { flex: 1 1 220px; }
+
+.openui-card {
+  background: var(--openui-surface);
+  border: 1px solid var(--openui-border);
+  border-radius: var(--openui-radius);
+  padding: calc(var(--openui-space) * 1.25);
+}
+.openui-card__title { margin: 0; font-size: 1.05em; font-weight: 600; }
+.openui-card__subtitle { margin: 2px 0 0; color: var(--openui-fg-muted); font-size: 0.9em; }
+.openui-card__body { margin-top: var(--openui-space); display: flex; flex-direction: column; gap: var(--openui-space); }
+
+.openui-text { margin: 0; }
+.openui-text--heading { font-size: 1.25em; font-weight: 650; line-height: 1.3; }
+.openui-text--caption { color: var(--openui-fg-muted); font-size: 0.875em; }
+
+.openui-table__wrap { overflow-x: auto; }
+.openui-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.openui-table__caption { text-align: left; color: var(--openui-fg-muted); font-size: 0.875em; padding-bottom: 6px; }
+.openui-table__th, .openui-table__td { padding: 8px 10px; border-bottom: 1px solid var(--openui-border); }
+.openui-table__th { font-weight: 600; color: var(--openui-fg-muted); font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.02em; }
+.openui-table__cell--right { text-align: right; }
+.openui-table__cell--left { text-align: left; }
+.openui-table__sort { display: inline-block; vertical-align: -1px; margin-left: 4px; }
+.openui-col { margin: 0; }
+.openui-col__label { font-weight: 600; }
+.openui-col__cell { margin: 0; }
+
+.openui-kv__title { margin: 0 0 6px; font-size: 1em; font-weight: 600; }
+.openui-kv__list { margin: 0; display: grid; grid-template-columns: max-content 1fr; column-gap: 16px; row-gap: 4px; }
+.openui-kv__row { display: contents; }
+.openui-kv__label { color: var(--openui-fg-muted); }
+.openui-kv__value { margin: 0; font-weight: 500; }
+
+.openui-callout { border-left: 3px solid var(--openui-info); background: var(--openui-surface); border-radius: 6px; padding: 10px 14px; }
+.openui-callout--tip { border-left-color: var(--openui-tip); }
+.openui-callout--warning { border-left-color: var(--openui-warning); }
+.openui-callout--danger { border-left-color: var(--openui-danger); }
+.openui-callout__title { margin: 0 0 2px; font-weight: 600; }
+.openui-callout__text { margin: 0; }
+
+.openui-chart { margin: 0; }
+.openui-chart__title { font-weight: 600; margin-bottom: 6px; }
+.openui-chart__svg { width: 100%; height: auto; display: block; }
+.openui-chart__axis { stroke: var(--openui-border); stroke-width: 1; }
+.openui-chart__tick, .openui-chart__label { fill: var(--openui-fg-muted); font-size: 11px; }
+.openui-chart__svg .openui-chart__line { stroke-width: 2; fill: none; }
+.openui-chart__empty { color: var(--openui-fg-muted); }
+.openui-chart__legend { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; padding: 0; margin: 6px 0 0; font-size: 0.85em; }
+.openui-chart__legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.openui-chart__swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.openui-chart__series-0 { fill: var(--openui-s1); stroke: var(--openui-s1); background: var(--openui-s1); }
+.openui-chart__series-1 { fill: var(--openui-s2); stroke: var(--openui-s2); background: var(--openui-s2); }
+.openui-chart__series-2 { fill: var(--openui-s3); stroke: var(--openui-s3); background: var(--openui-s3); }
+.openui-chart__series-3 { fill: var(--openui-s4); stroke: var(--openui-s4); background: var(--openui-s4); }
+.openui-chart__series-4 { fill: var(--openui-s5); stroke: var(--openui-s5); background: var(--openui-s5); }
+.openui-chart__series-5 { fill: var(--openui-s6); stroke: var(--openui-s6); background: var(--openui-s6); }
+.openui-chart__series-6 { fill: var(--openui-s7); stroke: var(--openui-s7); background: var(--openui-s7); }
+.openui-chart__series-7 { fill: var(--openui-s8); stroke: var(--openui-s8); background: var(--openui-s8); }
+.openui-chart__legend .openui-chart__swatch { fill: none; stroke: none; }
+.openui-chart__svg--pie { max-width: 240px; margin: 0 auto; }
+.openui-chart__svg .openui-chart__slice { stroke: var(--openui-bg); stroke-width: 1.5; }
+.openui-render-error { display: none; }

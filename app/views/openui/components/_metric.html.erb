@@ -1,0 +1,28 @@
+<%# locals: (openui:, element:, label:, value:, unit: nil, delta: nil, caption: nil) %>
+<%
+  number = number_with_delimiter(openui.text(value))
+  unit = openui.text(unit)
+  shown = if %w[$ € £].include?(unit) then "#{unit}#{number}"
+  elsif unit == "%" then "#{number}%"
+  else [number, unit.presence].compact.join(" ")
+  end
+  delta = delta.is_a?(Numeric) ? delta : nil
+%>
+<div class="openui-metric rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+  <p class="text-sm font-medium text-gray-500 dark:text-gray-400"><%= openui.text(label) %></p>
+  <p class="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100"><%= shown %></p>
+  <% if delta || caption.present? %>
+    <p class="mt-1 flex items-center gap-1.5 text-sm">
+      <% if delta %>
+        <% if delta.positive? %>
+          <span class="inline-flex items-center gap-1 font-medium text-green-600 dark:text-green-400"><%= openui_icon("trending-up", size: 14) %>+<%= openui.text(delta) %>%</span>
+        <% elsif delta.negative? %>
+          <span class="inline-flex items-center gap-1 font-medium text-red-600 dark:text-red-400"><%= openui_icon("trending-down", size: 14) %><%= openui.text(delta) %>%</span>
+        <% else %>
+          <span class="inline-flex items-center gap-1 font-medium text-gray-500 dark:text-gray-400"><%= openui_icon("minus", size: 14) %>0%</span>
+        <% end %>
+      <% end %>
+      <% if caption.present? %><span class="text-gray-500 dark:text-gray-400"><%= openui.text(caption) %></span><% end %>
+    </p>
+  <% end %>
+</div>

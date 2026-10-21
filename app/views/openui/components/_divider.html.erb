@@ -1,0 +1,10 @@
+<%# locals: (openui:, element:, label: nil) %>
+<% if label.present? %>
+  <div class="openui-divider flex items-center gap-3" role="separator">
+    <span class="h-px flex-1 bg-gray-200 dark:bg-gray-800"></span>
+    <span class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400"><%= openui.text(label) %></span>
+    <span class="h-px flex-1 bg-gray-200 dark:bg-gray-800"></span>
+  </div>
+<% else %>
+  <hr class="openui-divider border-0 border-t border-gray-200 dark:border-gray-800">
+<% end %>

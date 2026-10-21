@@ -1,0 +1,7 @@
+<%# locals: (openui:, element:, items: [], variant: "bullet") %>
+<%= content_tag(variant == "ordered" ? :ol : :ul,
+      class: "openui-list #{variant == "ordered" ? "list-decimal" : "list-disc"} space-y-1 pl-5 text-sm text-gray-700 marker:text-gray-400 dark:text-gray-300 dark:marker:text-gray-500") do %>
+  <% Array(items).each do |item| %>
+    <li><%= openui.text(item) %></li>
+  <% end %>
+<% end %>

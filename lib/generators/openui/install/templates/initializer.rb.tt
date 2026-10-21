@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+# openui-rails: the component library the model generates against.
+# Resolved lazily so app/libraries/openui_library.rb reloads in development.
+OpenUI::Rails.configure do |config|
+  config.library = -> { OpenuiLibrary.instance }
+
+  # Render skeleton nodes for statements the model has not streamed yet.
+  # The OpenUI spec default is no placeholders; turn on for a top-down reveal.
+  config.placeholders = false
+end

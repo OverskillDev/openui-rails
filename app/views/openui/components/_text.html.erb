@@ -1,0 +1,7 @@
+<%# locals: (openui:, element:, text:, variant: "body") %>
+<% variant = "body" unless %w[body heading caption].include?(variant) %>
+<% if variant == "heading" %>
+  <h2 class="openui-text openui-text--heading"><%= openui.text(text) %></h2>
+<% else %>
+  <p class="openui-text openui-text--<%= variant %>"><%= openui.text(text) %></p>
+<% end %>

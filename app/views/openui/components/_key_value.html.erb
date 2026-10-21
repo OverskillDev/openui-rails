@@ -1,0 +1,13 @@
+<%# locals: (openui:, element:, items: [], title: nil) %>
+<div class="openui-kv">
+  <% if title.present? %><h3 class="openui-kv__title"><%= openui.text(title) %></h3><% end %>
+  <dl class="openui-kv__list">
+    <% Array(items).each do |item| %>
+      <% next unless item.is_a?(Hash) %>
+      <div class="openui-kv__row">
+        <dt class="openui-kv__label"><%= openui.text(item["label"]) %></dt>
+        <dd class="openui-kv__value"><%= openui.node(item["value"]) %></dd>
+      </div>
+    <% end %>
+  </dl>
+</div>

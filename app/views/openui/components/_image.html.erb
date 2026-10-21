@@ -1,0 +1,13 @@
+<%# locals: (openui:, element:, alt:, src: nil, caption: nil) %>
+<% src = openui_safe_src(openui.text(src)) %>
+<figure class="openui-image">
+  <% if src %>
+    <img src="<%= src %>" alt="<%= openui.text(alt) %>" loading="lazy" referrerpolicy="no-referrer" class="w-full rounded-lg object-cover">
+  <% else %>
+    <div class="flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-4 text-center text-sm text-gray-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400" role="img" aria-label="<%= openui.text(alt) %>">
+      <%= openui_icon("image", size: 28) %>
+      <span><%= openui.text(alt) %></span>
+    </div>
+  <% end %>
+  <% if caption.present? %><figcaption class="mt-2 text-sm text-gray-500 dark:text-gray-400"><%= openui.text(caption) %></figcaption><% end %>
+</figure>

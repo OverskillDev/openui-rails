@@ -1,0 +1,14 @@
+<%# locals: (openui:, element:, labels: [], series: [], variant: "bar", title: nil) %>
+<% variant = "bar" unless %w[bar line pie].include?(variant) %>
+<figure class="openui-chart openui-chart--<%= variant %>">
+  <% if title.present? %><figcaption class="openui-chart__title"><%= openui.text(title) %></figcaption><% end %>
+  <%= openui_chart_svg(labels: labels, series: series, variant: variant) %>
+  <% names = variant == "pie" ? Array(labels).first(60) : Array(series).filter_map { |s| s.is_a?(Hash) ? s["name"] : nil }.first(8) %>
+  <% if names.length > 1 %>
+    <ul class="openui-chart__legend">
+      <% names.each_with_index do |name, i| %>
+        <li class="openui-chart__legend-item"><span class="openui-chart__swatch openui-chart__series-<%= i % 8 %>" aria-hidden="true"></span><%= openui.text(name) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</figure>

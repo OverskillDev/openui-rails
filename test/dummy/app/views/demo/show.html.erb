@@ -1,0 +1,11 @@
+<h1>Answer</h1>
+<p class="lede"><%= @run.prompt %></p>
+<turbo-stream-source src="<%= demo_events_path(@run.id) %>"></turbo-stream-source>
+<div class="answer">
+  <%= openui_mount(@run.mount_id) %>
+</div>
+<p class="status" id="status-<%= @run.id %>"><%= @live ? "Asking the model…" : "Streaming the canned answer…" %></p>
+<details>
+  <summary>OpenUI Lang the model wrote</summary>
+  <pre id="program-<%= @run.id %>"></pre>
+</details>

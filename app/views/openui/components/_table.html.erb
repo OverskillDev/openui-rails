@@ -1,0 +1,27 @@
+<%# locals: (openui:, element:, columns: [], caption: nil) %>
+<%
+  cols = Array(columns).select { |c| c.is_a?(OpenUI::Lang::Element) && c.type == "Col" }
+  row_count = cols.map { |c| Array(c.props["data"]).length }.max || 0
+%>
+<div class="openui-table__wrap">
+  <table class="openui-table">
+    <% if caption.present? %><caption class="openui-table__caption"><%= openui.text(caption) %></caption><% end %>
+    <thead>
+      <tr>
+        <% cols.each do |col| %>
+          <% sort = {"asc" => "ascending", "desc" => "descending"}[col.props["sort"]] %>
+          <th scope="col" class="openui-table__th openui-table__cell--<%= col.props["align"] == "right" ? "right" : "left" %>"<% if sort %> aria-sort="<%= sort %>"<% end %>><%= openui.text(col.props["label"]) %><% if sort %><%= openui_icon(sort == "ascending" ? "arrow-up" : "arrow-down", size: 12, class: "openui-table__sort") %><% end %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% row_count.times do |i| %>
+        <tr>
+          <% cols.each do |col| %>
+            <td class="openui-table__td openui-table__cell--<%= col.props["align"] == "right" ? "right" : "left" %>"><%= openui.node(Array(col.props["data"])[i]) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

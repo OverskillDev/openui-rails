@@ -1,0 +1,13 @@
+<h1>openui-rails</h1>
+<p class="lede">The model answers in OpenUI Lang; Rails renders it with ERB partials and streams it with Turbo.</p>
+<%= form_with url: demo_path, method: :post, local: true, data: {turbo: false} do |f| %>
+  <%= f.text_area :prompt, value: @prompt %>
+  <%= f.button "Ask" %>
+<% end %>
+<p class="status">
+  <% if ENV["OPENAI_API_KEY"].present? || ENV["OPENROUTER_API_KEY"].present? %>
+    A real model will answer (set OPENUI_DEMO_MODEL to change it).
+  <% else %>
+    No API key set: a canned answer streams in chunks. Set OPENAI_API_KEY or OPENROUTER_API_KEY for a live model.
+  <% end %>
+</p>

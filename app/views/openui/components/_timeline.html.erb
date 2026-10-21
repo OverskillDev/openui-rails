@@ -1,0 +1,12 @@
+<%# locals: (openui:, element:, items: []) %>
+<ol class="openui-timeline relative ms-1.5 space-y-5 border-s border-gray-200 dark:border-gray-800">
+  <% Array(items).each do |item| %>
+    <% next unless item.is_a?(Hash) %>
+    <li class="relative ps-5">
+      <span class="absolute -start-1.5 top-1.5 size-3 rounded-full border-2 border-white bg-blue-600 dark:border-gray-950 dark:bg-blue-500" aria-hidden="true"></span>
+      <% if item["time"].present? %><p class="text-xs text-gray-500 dark:text-gray-400"><%= openui.text(item["time"]) %></p><% end %>
+      <p class="text-sm font-semibold text-gray-900 dark:text-gray-100"><%= openui.text(item["title"]) %></p>
+      <% if item["text"].present? %><p class="mt-0.5 text-sm text-gray-600 dark:text-gray-400"><%= openui.text(item["text"]) %></p><% end %>
+    </li>
+  <% end %>
+</ol>
